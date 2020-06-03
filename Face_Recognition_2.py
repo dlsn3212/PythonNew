@@ -22,7 +22,7 @@ minH = 0.1*cam.get(4)
 while True:
     ret, img = cam.read()
     img = cv2.flip(img, -1)
-    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) #BGR순서 원래는 RGB
 
     faces = faceCascade.detectMultiScale(
         gray,
@@ -43,11 +43,11 @@ while True:
             confidence = "  {0}%".format(round(100 - confidence))
 
         cv2.putText(img,str(id), (x+5,y-5), font, 1, (255,255,255),2)
-        cv2.putText(img, str(confidence), (x+5,y+h-5),font,1,(255,255,0),1)
+        cv2.putText(img, str(confidence), (x+5,y+h-5),font,1,(255,255,0),1) #putText사용 xy위치에 글자 뿌려줌
 
     cv2.imshow('camera',img)
     k = cv2.waitKey(10) & 0xff
-    if k == 27:
+    if k == 27: # 끝냄
         break
 
 print("\n [INFO] Exiting Progtam and cleanup stuff")
